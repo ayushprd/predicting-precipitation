@@ -72,18 +72,31 @@ I utilized two validation methods to assess the performance of my models:
 | LSTM               | 0.969192  | 0.000000   | 0.000000  | 0.000000   |
 
 ## Discussion and Conclusion
-Predicting precipitation using only precipitation and temperature data is challenging. Incorporating additional variables such as atmospheric pressure, humidity, and solar radiation could help improve the performance of the models. 
+### Regression Performance
+For the regression task, the evaluation metrics used were Mean Absolute Error (MAE), Mean Squared Error (MSE), Root Mean Squared Error (RMSE), and R-squared (R2) score.
+In the temporal split validation, the Random Forest and Linear Regression models showed comparable performance, with the Random Forest model having slightly better MAE and RMSE scores. The LSTM model performed significantly worse, with much higher error scores and a negative R2 score.
+The temporal cross-validation results exhibited a similar trend, with the Random Forest and XGBoost models outperforming the Linear Regression and LSTM models. The Linear Regression model had high error scores.
+
+### Classification Performance
+For the classification task, the evaluation metrics were Accuracy, Precision, Recall, and F1 Score.
+In the temporal split validation, the Linear Regression model achieved the highest accuracy and F1 score, followed by XGBoost and Random Forest. The LSTM model had a very high accuracy but zero precision, recall, and F1 score, it predicted only one class for all instances.
+
+The temporal cross-validation results showed a different trend, with the LSTM model achieving the highest accuracy but zero scores for other metrics, indicating the same issue as in the temporal split. The XGBoost model had the second-highest accuracy, followed by the Random Forest model. The Linear Regression model had the lowest accuracy but the highest recall, it correctly identified a portion of the actual positive instances (rainfal >10mm) but also had many false positives.
+
+Overall, the models were able to capture the trend of precipitation but over or under estimated the magnitude. Random Forest and XGBoost jad better performance compared to the Linear Regression and LSTM. However, the classification performance was relatively poor, with low precision and F1 scores. Predicting precipitation using only algged precipitation and temperature data is challenging. Incorporating additional variables such as atmospheric pressure, humidity, and solar radiation could help improve the performance of the models. 
+
 
 ## Possible Improvements
 This approach could be improved by,
-- Hyperparameter optimization to find the best possible values for the models.
+- Hyperparameter optimization can be used to find the best possible hyperparameters for the models.
+- Leave one out cross validation (LOOCV) could be used to evaluate the generalizability of the models to unseen stations.
 - Incorporating other atmospheric variables from reanalysis datasets like ERA5 and MERRA-2.
 - Evaluating the potential of pretrained time series models in this task, as discussed in a recent [paper](https://arxiv.org/pdf/2310.10688).
-- XAI methods can be like SLISEMAP and SHAP used to understand which features influence specific heavy precipitation events.
+- XAI methods like SLISEMAP and SHAP used to understand which features influence specific heavy precipitation events.
 
 ## Time spent
-* understanding the problem and conceptualising a solution: 1 hr
-* obtaining and processing the data: 1 hr
-* writing the analysis script(s): 6 hr
-* visualising results: 1 hr
-* making the notebook ready for presentation: 30 mins
+* Understanding the problem and conceptualising a solution: 1 hr
+* Obtaining and processing the data: 1 hr
+* Writing the analysis script(s): 6 hr
+* Visualising results: 1 hr
+* Making the notebook ready for presentation: 30 mins
