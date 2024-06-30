@@ -83,7 +83,9 @@ In the temporal split validation, the Linear Regression model achieved the highe
 
 The temporal cross-validation results showed a different trend, with the LSTM model achieving the highest accuracy but zero scores for other metrics, indicating the same issue as in the temporal split. The XGBoost model had the second-highest accuracy, followed by the Random Forest model. The Linear Regression model had the lowest accuracy but the highest recall, it correctly identified a portion of the actual positive instances (rainfal >10mm) but also had many false positives.
 
-Overall, the models were able to capture the trend of precipitation but over or under estimated the magnitude. Random Forest and XGBoost jad better performance compared to the Linear Regression and LSTM. However, the classification performance was relatively poor, with low precision and F1 scores. Predicting precipitation using only algged precipitation and temperature data is challenging. Incorporating additional variables such as atmospheric pressure, humidity, and solar radiation could help improve the performance of the models. 
+Feature importances from Random Forest and XGBoost showed that precipiation of previous day both at the target station and its neignouring stations were useful in the prediction.
+
+Overall, the models were able to capture the trend of precipitation but over or under estimated the magnitude. Random Forest and XGBoost had better performance compared to the Linear Regression and LSTM. However, the classification performance was relatively poor, with low precision and F1 scores. Predicting precipitation using only lagged precipitation and temperature data is challenging. Incorporating additional variables such as atmospheric pressure, humidity, and solar radiation could help improve the performance of the models. 
 
 
 ## Possible Improvements
