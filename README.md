@@ -1,10 +1,11 @@
 
-# Predicting Significant Precipitation Events in Northern Germany
+# Predicting Precipitation Events in Northern Germany
 
 ## Description
 The aim is to predict the occurrence and magnitude of precipitation events exceeding 10 mm per day in Northern Germany using daily precipitation data from 10 NOAA GHCND stations. The dataset is from January 1, 2014, to March 31, 2024.
 
 ## Table of Contents
+ - [Repository structure](#repository-structure)
  - [Data and Methods](#data-and-methods)
    - [Data Preprocessing](#data-preprocessing)
    - [Modeling Approach](#modeling-approach)
@@ -14,6 +15,9 @@ The aim is to predict the occurrence and magnitude of precipitation events excee
  - [Time spent](#time-spent)
 
 ## Repository structure
+- [ExploringData.ipynb](https://github.com/ayushprd/predicting-precipitation/blob/main/notebooks/ExploringData.ipynb) contains the initial data exploration and visualizations.
+- [model_1.ipynb](https://github.com/ayushprd/predicting-precipitation/blob/main/notebooks/model_1.ipynb) contains the code for training and evaluating Random Forest, XGBoost and Linear regression models.
+- [model_2.ipynb](https://github.com/ayushprd/predicting-precipitation/blob/main/notebooks/model_2.ipynb) contains the code for training and evaluating the LSTM model.
 
 ## Data and Methods
 ### Data Preprocessing
@@ -36,32 +40,36 @@ I utilized two validation methods to assess the performance of my models:
 2. Temporal cross-validation with 5 splits
 
 ### Regression Results (Temporal Split):
-| Model           | MAE       | MSE        | RMSE      | R2         |
-|-----------------|-----------|------------|-----------|------------|
-| Random Forest   | 2.105349  | 12.146505  | 3.485184  | 0.175133   |
-| XGBoost         | 2.119736  | 12.561753  | 3.544256  | 0.146934   |
-| Linear Regression | 2.145356 | 12.700200  | 3.563734  | 0.137532   |
+| Model              | MAE       | MSE        | RMSE      | R2         |
+|--------------------|-----------|------------|-----------|------------|
+| Random Forest      | 2.413677  | 15.988781  | 3.998597  | 0.115764   |
+| XGBoost            | 2.435416  | 17.213598  | 4.148927  | 0.048027   |
+| Linear Regression  | 2.367552  | 16.123818  | 4.015447  | 0.108296   |
+| LSTM               | 5.833561  | 39.731750  | 6.303313  | -1.193390  |
 
 ### Classification Results (Temporal Split):
-| Model           | Accuracy  | Precision  | Recall    | F1 Score   |
-|-----------------|-----------|------------|-----------|------------|
-| Random Forest   | 0.661538  | 0.088957   | 0.725     | 0.158470   |
-| XGBoost         | 0.682418  | 0.097087   | 0.750     | 0.171920   |
-| Linear Regression | 0.684615 | 0.095082  | 0.725     | 0.168116   |
+| Model              | Accuracy  | Precision  | Recall    | F1 Score   |
+|--------------------|-----------|------------|-----------|------------|
+| Random Forest      | 0.648742  | 0.119497   | 0.721519  | 0.205036   |
+| XGBoost            | 0.705166  | 0.119792   | 0.582278  | 0.198704   |
+| Linear Regression  | 0.729272  | 0.134884   | 0.611814  | 0.221037   |
+| LSTM               | 0.937250  | 0.000000   | 0.000000  | 0.000000   |
 
 ### Regression Results (Temporal Cross-Validation):
-| Model           | MAE       | MSE        | RMSE      | R2         |
-|-----------------|-----------|------------|-----------|------------|
-| Random Forest   | 1.850467e+001 | 1.182214e+013 | 3.438333e+001 | 1.579848e-01 |
-| XGBoost         | 1.855479e+001 | 1.262287e+013 | 3.552867e+001 | 1.009541e-01 |
-| Linear Regression | 1.021862e+091 | 1.443506e+193 | 3.799350e+09 | -1.028117e+18 |
+| Model              | MAE           | MSE            | RMSE           | R2             |
+|--------------------|---------------|----------------|----------------|----------------|
+| Random Forest      | 1.760742      | 11.288620      | 3.359854       | 0.141660       |
+| XGBoost            | 1.765916      | 11.977390      | 3.460836       | 0.089289       |
+| Linear Regression  | 3.371652e+08  | 2.147664e+18   | 1.465491e+09   | -1.632995e+17  |
+| LSTM               | 5.867324      | 40.318371      | 6.349675       | -2.053693      |
 
 ### Classification Results (Temporal Cross-Validation):
-| Model           | Accuracy  | Precision  | Recall    | F1 Score   |
-|-----------------|-----------|------------|-----------|------------|
-| Random Forest   | 0.720749  | 0.092137   | 0.776406  | 0.164726   |
-| XGBoost         | 0.762345  | 0.096191   | 0.679012  | 0.168511   |
-| Linear Regression | 0.701630 | 0.070429  | 0.607682  | 0.126229   |
+| Model              | Accuracy  | Precision  | Recall    | F1 Score   |
+|--------------------|-----------|------------|-----------|------------|
+| Random Forest      | 0.759593  | 0.089459   | 0.743728  | 0.159708   |
+| XGBoost            | 0.795926  | 0.090933   | 0.627240  | 0.158838   |
+| Linear Regression  | 0.449876  | 0.043630   | 0.808244  | 0.082790   |
+| LSTM               | 0.969192  | 0.000000   | 0.000000  | 0.000000   |
 
 ## Discussion and Conclusion
 Predicting precipitation using only precipitation and temperature data is challenging. Incorporating additional variables such as atmospheric pressure, humidity, and solar radiation could help improve the performance of the models. 
