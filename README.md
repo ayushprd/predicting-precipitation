@@ -13,11 +13,14 @@ The aim is to predict the occurrence and magnitude of precipitation events excee
  - [Discussion and Conclusion](#discussion-and-conclusion)
  - [Possible Improvements](#possible-improvements)
  - [Time spent](#time-spent)
+ - [References](#references)
 
 ## Repository structure
 - [ExploringData.ipynb](https://github.com/ayushprd/predicting-precipitation/blob/main/notebooks/ExploringData.ipynb) contains the initial data exploration and visualizations.
 - [model_1.ipynb](https://github.com/ayushprd/predicting-precipitation/blob/main/notebooks/model_1.ipynb) contains the code for training and evaluating Random Forest, XGBoost and Linear regression models.
 - [model_2.ipynb](https://github.com/ayushprd/predicting-precipitation/blob/main/notebooks/model_2.ipynb) contains the code for training and evaluating the LSTM model.
+- [scripts](https://github.com/ayushprd/predicting-precipitation/tree/main/scripts) contains the utility functions used in this project and the LSTM Model code.
+
 
 ## Data and Methods
 ### Data Preprocessing
@@ -93,8 +96,8 @@ This approach could be improved by,
 - Hyperparameter optimization can be used to find the best possible hyperparameters for the models.
 - Leave one out cross validation (LOOCV) could be used to evaluate the generalizability of the models to unseen stations.
 - Incorporating other atmospheric variables from reanalysis datasets like ERA5 and MERRA-2.
-- Evaluating the potential of pretrained time series models in this task, as discussed in a recent [paper](https://arxiv.org/pdf/2310.10688).
-- XAI methods like SLISEMAP and SHAP used to understand which features influence specific heavy precipitation events.
+- Evaluating the potential of pretrained time series models in this task, as discussed in a recent paper (Das et al., 2023).
+- XAI methods like SLISEMAP (Björklund et al., 2024) and SHAP used to understand which features influence specific heavy precipitation events.
 
 ## Time spent
 * Understanding the problem and conceptualising a solution: 1 hr
@@ -102,3 +105,8 @@ This approach could be improved by,
 * Writing the analysis script(s): 6 hr
 * Visualising results: 1 hr
 * Making the notebook ready for presentation: 30 mins
+
+## References
+Björklund, A., Seppäläinen, L., & Puolamäki, K. (2024, April). SLIPMAP: Fast and Robust Manifold Visualisation for Explainable AI. In International Symposium on Intelligent Data Analysis (pp. 223-235). Cham: Springer Nature Switzerland.
+
+Das, A., Kong, W., Sen, R., & Zhou, Y. (2023). A decoder-only foundation model for time-series forecasting. arXiv preprint arXiv:2310.10688.
